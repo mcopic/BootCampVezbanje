@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class FillOutRegister {
 
@@ -49,6 +50,9 @@ public class FillOutRegister {
 
 			WebElement postalCode = driver.findElement(By.name("postalCode"));
 			postalCode.sendKeys("12345");
+			
+			Select country = new Select(driver.findElement(By.name("country")));
+			country.selectByVisibleText("SERBIA");
 
 			WebElement userName = driver.findElement(By.name("email"));
 			userName.sendKeys("kikiriki");
@@ -63,13 +67,29 @@ public class FillOutRegister {
 					"/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[18]/td/input"));
 			submit.click();
 			
+			WebElement signOff = driver.findElement(
+					By.xpath("/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/a"));
+			signOff.click();
+			
+			
+			WebElement userN = driver.findElement(By.name("userName"));
+			userN.sendKeys("kikiriki");
+
+			
+			WebElement password = driver.findElement(By.name("password"));
+			password.sendKeys("rick");
+			
+			WebElement login = driver.findElement(By.xpath(
+					"/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td/input"));
+			login.click();
+			
 		} catch (Exception ex) {
 			
 			System.out.println(ex.toString());
 			
 		} finally {
 			
-			driver.quit();
+			//driver.quit();
 			
 		}
 
